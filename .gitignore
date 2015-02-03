@@ -1,4 +1,20 @@
 *.class
+\.classpath
+\.settings
+*.apk
+*.ap_
+*.dex
+bin/
+gen/
+.apt_generated
+*.pyc
+local.properties
+**.metadata
+proguard/
+*.iml
+*.ipr
+*.iws
+.idea/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

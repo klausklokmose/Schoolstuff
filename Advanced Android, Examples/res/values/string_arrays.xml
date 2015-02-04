@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="fragments_xml_bookmarks">
+        <item>http://www.jayway.com/</item>
+        <item>http://blog.jayway.com/</item>
+        <item>http://gdg-cph.dk/</item>
+        <item>http://www.prosa.dk/</item>
+        <item>http://www.google.com/</item>
+        <item>http://en.wikipedia.org/wiki/Android_operating_system</item>
+        <item>http://developer.android.com</item>
+        <item>http://www.theregister.co.uk/</item>
+        <item>http://www.dr.dk/</item>
+        <item>http://www.dmi.dk/vejr/</item>
+        <item>http://www.bbc.co.uk/news/</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="Find:"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/fragments_component_searchbox_fragment_searchterm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="..."
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/fragments_component_searchbox_fragment_searchbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0"
+        android:text="Go!" />
+
+</LinearLayout>

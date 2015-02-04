@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>Algo5</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src/NetworkFlow1.java</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ITU/1%20Semester/Algorithm%20I/Lecture%205/NetworkFlow1.java</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

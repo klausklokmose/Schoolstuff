@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- Search, should appear as action button -->
+    <item
+        android:id="@+id/action_new_recipe"
+        android:icon="@drawable/add_ic"
+        android:showAsAction="always"
+        android:title="@string/add_recipe"/>
+
+</menu>

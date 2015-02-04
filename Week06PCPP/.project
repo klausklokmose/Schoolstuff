@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>Week06PCPP</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src/TestGuardedBy.java</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ITU/1%20Semester/PRCPP/lecture%206/pcpp-week06/ts/guardedby/TestGuardedBy.java</locationURI>
+		</link>
+		<link>
+			<name>src/TestListHelper.java</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ITU/1%20Semester/PRCPP/lecture%206/pcpp-week06/TestListHelper.java</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

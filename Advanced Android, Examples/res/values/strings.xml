@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Advanced Android</string>
+    <string name="about_headline">Advanced Android course</string>
+    <string name="about_copyright">Copright \u00A9 2013 : Jayway ApS</string>
+    <string name="about_link">http://www.jayway.com/</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_defaulttab_set">Set current tab as default</string>
+    <string name="action_defaulttab_go">Go to default tab</string>
+    <string name="action_defaulttab_clear">Reset default tab</string>
+    <string name="action_about">About\u2026</string>
+    <string name="crash_title">Ouch! :-(</string>
+    <string name="crash_header">Un uncaught exception fell through:</string>
+    <string name="fragments_component_main_title">High level UI components</string>
+    <string name="fragments_xml_main_title">Alternate resource layouts</string>
+    <string name="asynctasks_uiblocking_main_title">Slow operations block the UI</string>
+    <string name="asynctasks_baduiupdate_main_title">Can\'t update UI from background</string>
+    <string name="asynctasks_cancellation_main_title">Async Task cancellation</string>
+    <string name="asynctasks_progressupdate_main_title">Async Progress updates</string>
+    <string name="services_simpleworkqueue_main_title">IntentService work queue</string>
+    <string name="services_intervalservice_main_title">Repeating work using AlarmManager</string>
+    <string name="custom_view">Custom view</string>
+    <string name="animation_tween_xml">Tween XML animation</string>
+    <string name="animation_property_xml">XML animation using property animator</string>
+    <string name="animation_property_java">Java animation using property animator</string>
+    <string name="animation_value_java">Java animation using value animator</string>
+    <string name="animation_value_java_on_circle">Java animation using value animator on custom property</string>
+    <string name="network_rssfeed_main_title">RSS feed via HTTP</string>
+</resources>

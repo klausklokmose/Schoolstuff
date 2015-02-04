@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jayway.android.advanced.examples"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="17"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CrashActivity"
+            android:label="@string/crash_title" >
+        </activity>
+        <!-- Fragments: -->
+        <activity
+            android:name=".fragments.component.ComponentFragmentActivity"
+            android:label="@string/fragments_component_main_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".fragments.xml.ResourceDeterminedFragmentActivity"
+            android:label="@string/fragments_xml_main_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".fragments.xml.SeparatePreviewFragmentActivity"
+            android:label="Bookmark Preview" />
+        <!-- Async Tasks: -->
+        <activity
+            android:name=".asynctasks.uiblocking.UiBlockingActivity"
+            android:label="@string/asynctasks_uiblocking_main_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".asynctasks.baduiupdate.BadUiUpdateActivity"
+            android:label="@string/asynctasks_baduiupdate_main_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".asynctasks.cancellation.AsyncTaskCancellationActivity"
+            android:label="@string/asynctasks_cancellation_main_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".asynctasks.progressupdate.ProgressReportingActivity"
+            android:label="@string/asynctasks_progressupdate_main_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- Services: -->
+        <activity
+            android:name=".services.simpleworkqueue.IntentServiceActivity"
+            android:label="@string/services_simpleworkqueue_main_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".services.intervalservice.RepeatedServiceActivity"
+            android:label="@string/services_intervalservice_main_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".services.simpleworkqueue.WorkQueueService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".services.intervalservice.IntervalService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:name=".services.intervalservice.DeviceBootBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".customview.CustomViewActivity" >
+        </activity>
+        <activity android:name=".animation.AnimationObjectXmlActivity" >
+        </activity>
+        <activity android:name=".animation.AnimationObjectActivity" >
+        </activity>
+        <activity android:name=".animation.AnimationTweenXmlActivity" >
+        </activity>
+        <activity android:name=".animation.AnimationValueActivity" >
+        </activity>
+        <activity android:name=".animation.CircleAnimationValueActivity" >
+        </activity>
+        <activity android:name=".adapters.ArrayAdapterActivity" >
+        </activity>
+        <activity android:name=".adapters.BaseAdapterActivity" >
+        </activity>
+        
+        <!-- Networking: -->
+        <activity
+            android:name=".network.rssfeed.RssFeedActivity"
+            android:label="@string/network_rssfeed_main_title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

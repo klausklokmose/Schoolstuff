@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ProgressReportingActivity" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Running asynchronous tasks can be cancelled. Cancellation might not occur immediately." />
+
+    <Button
+        android:id="@+id/asyntasks_cancellation_button_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:onClick="onStartTaskButton"
+        android:text="Start Async task" />
+
+    <Button
+        android:id="@+id/asyntasks_cancellation_button_cancel"
+        android:enabled="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:onClick="onCancelTaskButton"
+        android:text="Cancel Async task" />
+
+    <Button
+        android:id="@+id/asyntasks_cancellation_button_interrupt"
+        android:enabled="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:onClick="onInterruptAndCancelTaskButton"
+        android:text="Interrupt \u0026 Cancel Async task" />
+
+    <ProgressBar
+        android:id="@+id/asyntasks_cancellation_spinner"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.smartcoffee"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="14" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <instrumentation android:targetPackage="com.example.smartcoffee.test" android:name="android.test.InstrumentationTestRunner"></instrumentation>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/coffee_mug"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo.Light" >
+        <activity
+            android:name="com.example.smartcoffee.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.smartcoffee.RecipeActivity"
+            android:label="@string/title_activity_recipe"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoffee.OrderActivity"
+            android:label="@string/title_activity_order"
+            android:screenOrientation="portrait" >
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,49 @@
+Timestamp, 27/01/2015 15:47:06
+Age, 23
+Gender, Male
+Shoe size, 43
+Height, "181, 5"
+Which seat are you sitting/did you sit on during the introduction lecture?, 4
+Which row are you sitting/did you sit in during the introduction lecture?, B
+Which programming languages do you know?, nodejs;javascript;java;c#;sql;bash
+Which phone OS do you prefer?, iOS
+Which topics would you prefer to learn in this course? [Design efficient databases for large amounts of data], Sounds interesting
+Which topics would you prefer to learn in this course? [Create predictive models (e.g. weather or stock market prediction)], Sounds interesting
+Which topics would you prefer to learn in this course? [Define groups of similar objects (e.g. users from a dating site)], Meh
+Which topics would you prefer to learn in this course? [Visualise data], Sounds interesting
+Which topics would you prefer to learn in this course? [Study patterns on sets (e.g. Amazon shopping carts)], Meh
+Which topics would you prefer to learn in this course? [Study patterns on sequences (e.g. exercises on a workout session)], Meh
+Which topics would you prefer to learn in this course? [Study patterns on graphs (e.g. Facebook)], Meh
+Which topics would you prefer to learn in this course? [Study patterns on text (e.g. spam mail)], Sounds interesting
+Which topics would you prefer to learn in this course? [Study patterns on images (e.g. face detection)], Not interested
+Which topics would you prefer to learn in this course? [Code data mining algorithms], Very interested
+Which topics would you prefer to learn in this course? [Use off-the-shelf data mining tools], Very interested
+How often do you play video games?, Never
+Which of these games have you played?, "Fifa 2014,  Grand theft auto V"
+How do you commute to ITU?, "Bike,  Metro"
+In which order do you normally traverse these ITU locations? [1 checkpoint], Basement
+In which order do you normally traverse these ITU locations? [2 checkpoint], Atrium
+In which order do you normally traverse these ITU locations? [3 checkpoint], Elevator
+In which order do you normally traverse these ITU locations? [4 checkpoint], Class/ Auditorium
+In which order do you normally traverse these ITU locations? [5 checkpoint], Elevator
+In which order do you normally traverse these ITU locations? [6 checkpoint], Analog
+In which order do you normally traverse these ITU locations? [7 checkpoint], Elevator
+In which order do you normally traverse these ITU locations? [8 checkpoint], Class/ Auditorium
+In which order do you normally traverse these ITU locations? [9 checkpoint], Elevator
+In which order do you normally traverse these ITU locations? [10 checkpoint], Canteen
+In which order do you normally traverse these ITU locations? [11 checkpoint], Atrium
+In which order do you normally traverse these ITU locations? [12 checkpoint], Basement
+Write three (3) random numbers between 0 and 10, 7;7;7
+How tall are you compared to Héctor?, I am taller than HÃ©ctor
+"Sort these pizzas from most (1) to least (10) preferred [peperoni, olives]", 8
+"Sort these pizzas from most (1) to least (10) preferred [tuna, capers, olives]", 1
+"Sort these pizzas from most (1) to least (10) preferred [ham, pineapple]", 5
+"Sort these pizzas from most (1) to least (10) preferred [mushrooms, olives, onions, pepper]", 2
+"Sort these pizzas from most (1) to least (10) preferred [eggplant, pepper, onion]", 3
+"Sort these pizzas from most (1) to least (10) preferred [peperoni, mushrooms, ham ]", 6
+"Sort these pizzas from most (1) to least (10) preferred [pineapple, mushrooms]", 7
+"Sort these pizzas from most (1) to least (10) preferred [tuna, pepper, eggplant]", 4
+Sort these pizzas from most (1) to least (10) preferred [nothing (margarita)], 10
+"Sort these pizzas from most (1) to least (10) preferred [peperoni, tuna, pineapple, eggplant, onions, pepper, capers]", 9
+What degree are you studying?, SDT-SE
+Why are you taking this course? I am interested in the subject

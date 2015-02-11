@@ -4,7 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The CSVFileReader class is used to load a csv file
@@ -13,7 +17,54 @@ import java.util.List;
  *
  */
 public class CSVFileReader {
+	public final static String normalized = "NORMALIZED";
+	public final static String height = "Height";
+	public final static String topicAlg = "Which topics would you prefer to learn in this course? [Use off-the-shelf data mining tools]";
+	public final static String videoGames = "How often do you play video games?";
+	public final static String tallerThanHector = "How tall are you compared to Héctor?";
+	public final static String whyCourse = "Why are you taking this course?";
+	
+	/*
+	 * Transformation table of how much time, people use on video games every week
+		Never				:= 0
+		< 5 hours a week	:= 1
+		< 10 hours a week	:= 2
+		< 20 hours a week	:= 3
+		> 20 hours a week	:= 4
+	*/
+	public final static String[] videoGamesUsageList = { "Never",
+		"< 5 hours a week",
+		"< 10 hours a week",
+		"< 20 hours a week",
+		"> 20 hours a week" };
+	
+	/*
+	 * Transformation table of how much time, people use on video games every week
+		Héctor is taller than me		:= 0
+		I am exactly as tall as Héctor	:= 1
+		I am taller than Héctor		:= 2
+	*/
+	public final static String[] tallerThanHectorList = { "Héctor is taller than me",
+		"I am exactly as tall as Héctor",
+		"I am exactly as tall as Héctor",
+		"I am taller than Héctor" };
 
+	public final static String[] interestedList = { "Meh",
+		"Not interested",
+		"Sounds interesting",
+		"Very interested" };
+	/*
+	  Transformation table (String to "integer")
+	  
+	  	NO ANSWER or written answer			:= -1
+	   	I am interested in the subject 		:= 0 
+	  	This was a mandatory course for me 	:= 1 
+	  	It may help me to find a job		:= 2
+	 */
+	public final static String[] ps = { "I am interested in the subject",
+			"This was a mandatory course for me",
+			"It may help me to find a job" };
+	
 	/**
 	 * The read method reads in a csv file as a two dimensional string array.
 	 * This method is utilizes the string.split method for splitting each line
@@ -116,8 +167,12 @@ public class CSVFileReader {
 					"Attributes.txt")));
 			String line = null;
 			while ((line = bufRdr.readLine()) != null) {
-				line = line.substring(0, line.length() - 1);
+				if(line.lastIndexOf(",")!=-1){
+					line = line.substring(0, line.length() - 1);
+				}
+				
 				lines.add(line);
+//				System.out.println(line);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -143,8 +198,8 @@ public class CSVFileReader {
 			String[][] data = readDataFile("DataMining2015Responses.csv", ",",
 					"-", true);
 			for (String[] line : data) {
-				// System.out.println("Length: " + line.length + " "
-				// + Arrays.toString(line));
+//				 System.out.println("Length: " + line.length + " "
+//				 + Arrays.toString(line));
 				responses.add(new Response(line));
 			}
 			// System.out.println("Size: " + data.length);
@@ -155,8 +210,88 @@ public class CSVFileReader {
 		// "Length: 49 [28/01/2015 12:25:38, 29, Male, 45, 196, 0, 15, Java; Python; JavaScript; C#; Ruby;, Android, Sounds interesting, Very interested, Very interested, Very interested, Sounds interesting, Meh, Meh, Meh, Sounds interesting, Very interested, Very interested, < 20 hours a week, \"Fifa 2014,  Grand theft auto V,  Last of us\", Walk, Atrium, Canteen, ScrollBar, Analog, Study room, Not at ITU, Not at ITU, Not at ITU, Not at ITU, Not at ITU, Not at ITU, Not at ITU, 3; 7; 2, I am taller than Héctor, 10, 10, 10, 10, 2, 1, 10, 10, 3, 10, SDT-DT, \"I am interested in the subject,  It may help me to find a job\"]");
 		// HashMap<String, String> re = r.getR();
 		// System.out.println(re.size());
+		List<Integer> heights = new ArrayList<>();
+		
 		for (Response r : responses) {
-			System.out.println(r.getR().get("Height"));
+			HashMap<String, String> result = r.getResult();
+			int h = Integer.parseInt(result.get(height));
+			if(h != -1){
+				heights.add(h);
+				result.put(height+normalized, normalize(result.get(height), heightMin, heightMax));
+			}
+			System.out.println(result.get(height+normalized)+
+					"\n\t"+result.get(topicAlg)+
+					"\n\t"+result.get(videoGames)+
+					"\n\t"+result.get(tallerThanHector)+
+					"\n\t"+result.get(whyCourse));
 		}
+		
+		heights.sort(Comparator.naturalOrder());
+//		System.out.println(heights);
+		int mean = sum(heights)/heights.size();
+		
+		int middleIndex = heights.size()/2;
+		int[] median = new int[2];
+		median[0] = heights.get(middleIndex);
+		if(heights.size()%2 == 0){
+			median[1] = heights.get(middleIndex+1);
+		}
+		System.out.println("---------HEIGHT----------------HEIGHT------------HEIGHT-------------HEIGHT-----------------");
+		System.out.println("MEAN:\t"+mean);
+		System.out.println("MEDIAN:\t"+median[0]+" "+median[1]);
+		
+		final List<Integer> modes = getModes(heights);
+	    System.out.println("MODES: "+modes);
+	    System.out.println("MIN: "+heightMin);
+	    System.out.println("MAX: "+heightMax);
+	    System.out.println("-------------------------------------------------------------------------------------------");
+	    System.out.println("number of resonses: "+responses.size());
+	}
+
+	private static List<Integer> getModes(List<Integer> heights) {
+		final List<Integer> modes = new ArrayList<Integer>();
+	    final Map<Integer, Integer> countMap = new HashMap<Integer, Integer>();
+
+	    int max = -1;
+
+	    for (final int n : heights) {
+	        int count = 0;
+
+	        if (countMap.containsKey(n)) {
+	            count = countMap.get(n) + 1;
+	        } else {
+	            count = 1;
+	        }
+
+	        countMap.put(n, count);
+
+	        if (count > max) {
+	            max = count;
+	        }
+	    }
+
+	    for (final Map.Entry<Integer, Integer> tuple : countMap.entrySet()) {
+	        if (tuple.getValue() == max) {
+	            modes.add(tuple.getKey());
+	        }
+	    }
+		return modes;
+	}
+	
+	private static int sum(List<Integer> heights) {
+		int sum = 0;
+		for (Integer h : heights) {
+			sum += h;
+		}
+		return sum;
+	}
+
+	public static int heightMax = 0;
+	public static int heightMin = Integer.MAX_VALUE;
+	
+	private static String normalize(String s, int min, int max){
+		double x = Integer.parseInt(s);
+		double i = (x-min)/(max-min);
+		return ""+i;
 	}
 }

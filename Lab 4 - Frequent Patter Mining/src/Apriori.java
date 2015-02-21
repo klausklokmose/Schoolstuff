@@ -15,47 +15,122 @@ public class Apriori {
 			{ 2, 3, 5 }, { 3, 4, 5 }, { 4, 5 }, { 2 }, { 2, 3 }, { 2, 3, 4 },
 			{ 3, 4, 5 } };
 	static final int supportThreshold = 2;
+	static final double min_conf = 20;
 
 	public static void main(String[] args) {
 		// TODO: Select a reasonable support threshold via trial-and-error. Can
 		// either be percentage or absolute value.
-		 List<ItemSet> r = apriori(TRANSACTIONS);
-		 System.out.println("............");
-		 for (int i = 0; i < r.size(); i++) {
-			System.out.println(i+" "+Arrays.toString(r.get(i).getSet()));
-		}
-		 System.out.println("............");
+		 List<AssocaitionRule> r = apriori(TRANSACTIONS);
+//		 for (int i = 0; i < r.size(); i++) {
+//			System.out.println(i+" "+Arrays.toString(r.get(i).getSet()));
+//		}
 	}
 
-	public static List<ItemSet> apriori(int[][] transactions) {
+	@SuppressWarnings("unchecked")
+	public static List<AssocaitionRule> apriori(int[][] transactions) {
 		int k;
-		List<ItemSet> result = new ArrayList<ItemSet>();
+		int noTransactions = transactions.length;
+		
+		Hashtable<ItemSet, Integer> result = new Hashtable<ItemSet, Integer>();
 		Hashtable<ItemSet, Integer> frequentItemSets = generateFrequentItemSetsLevel1(transactions);
 		for (k = 1; frequentItemSets.size() > 0; k++) {
-			System.out.println("Finding frequent itemsets of length " + (k + 1)
-					+ "…");
+			System.out.println("Finding frequent itemsets of length (k+1)=" + (k + 1));
 			frequentItemSets = generateFrequentItemSets(transactions,frequentItemSets);
 			// TODO: add to list
-			Iterator it = frequentItemSets.entrySet().iterator();
-			while(it.hasNext()) {
-				Map.Entry pair = (Map.Entry) it.next();
-				result.add((ItemSet) pair.getKey());
-				it.remove();
-			}
-			
-			System.out.println(" found " + frequentItemSets.size());
+			result.putAll((Map<ItemSet, Integer>) frequentItemSets.clone());
+//			System.out.println(" found " + frequentItemSets.size());
 		}
 		// TODO: create association rules from the frequent itemsets
-
+		List<AssocaitionRule> rules = new ArrayList<AssocaitionRule>();
+		Iterator<?> it = result.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry pair = (Map.Entry) it.next();
+			int[] set = getSet(pair);
+			//generate all subsets and generate rules for each of them
+			for (int i = 0; i < set.length; i++) {
+				
+				double confidence;
+				double support;
+				
+				
+			}
+			
+			
+			it.remove();
+		}
 		// TODO: return something useful
-		return result;
+		return rules;
 	}
 
 	private static Hashtable<ItemSet, Integer> generateFrequentItemSets(int[][] transactions, Hashtable<ItemSet, Integer> lowerLevelItemSets) {
-		System.out.println("generateFrequentItemSets");
+//		System.out.println("generateFrequentItemSets");
 		// TODO: first generate candidate itemsets from the lower level itemsets
 		// - join step
+		Hashtable<ItemSet, Integer> candidates = generateCandidates(
+				transactions, lowerLevelItemSets);
+		// TODO: then check if all subsets of the candidate item sets meet the
+		// apriori property - prune step
+		// generate all combinations of the candidates and check if they were
+		// frequent in the previous step
+//		Hashtable<ItemSet, Integer> subsets = new Hashtable<>();
+		Iterator<?> it3 = candidates.entrySet().iterator();
+//		System.out.println("Generate subsets of k-1=");
+		while (it3.hasNext()) {
+			Entry pair =  (Entry) it3.next();
+			// System.out.println(pair.getKey() + " = " + pair.getValue());
+			int[] s = getSet(pair);
+			int k = s.length;
+			String str = "{ ";
+			boolean foundSubSet = false;
+			//generate all subsets of this item
+			for (int i = 0; i < k; i++) {
+				int[] sub = new int[k - 1];
+				
+				for (int j = i + 1; j < k + i; j++) {
+					sub[j % (k - 1)] = s[j % k];
+				}
+				Arrays.sort(sub);
+				str += Arrays.toString(sub);
+				ItemSet item = new ItemSet(sub);
+				if(lowerLevelItemSets.containsKey(item)){
+					foundSubSet = true;
+//					System.out.println("found subset in lowerLevelItems");
+				}
+			}
+			str += "}";
+			if(!foundSubSet){
+//				System.out.println("removed candidate: "+str);
+				candidates.remove(pair.getKey());
+			}
+//			it3.remove();
+		}
+		System.out.println("candidate size after pruning: "+candidates.size());
+		/*
+		 * TODO: now check the support for the candidates left after pruning and
+		 * add only those that have enough support (i.e. support >=
+		 * support_threshold) to the set
+		 */
+		Hashtable<ItemSet, Integer> result = new Hashtable<>();
+		Iterator it4 = candidates.entrySet().iterator();
+		while(it4.hasNext()){
+//			System.out.println("it4");
+			Map.Entry<ItemSet, Integer> pair = (Map.Entry) it4.next();
+			int support = pair.getValue();
+			if(support >= supportThreshold){
+//				candidates.remove(pair.getKey());
+				result.put(pair.getKey(), support);
+//				System.out.println("remove because support was: "+support+ " for "+Arrays.toString(pair.getKey().getSet()));
+			}
+			it4.remove();
+		}
+		return result;
+	}
+
+	private static Hashtable<ItemSet, Integer> generateCandidates(
+			int[][] transactions, Hashtable<ItemSet, Integer> lowerLevelItemSets) {
+		
 		Hashtable<ItemSet, Integer> candidates = new Hashtable<>();
+		
 		Iterator it1 = lowerLevelItemSets.entrySet().iterator();
 		while (it1.hasNext()) {
 			Map.Entry p1 = (Map.Entry) it1.next();
@@ -76,54 +151,7 @@ public class Apriori {
 			}
 //			it1.remove();
 		}
-		// TODO: then check if all subsets of the candidate item sets meet the
-		// apriori property - prune step
-		// generate all combinations of the candidates and check if they were
-		// frequent in the previous step
-		Hashtable<ItemSet, Integer> subsets = new Hashtable<>();
-		Iterator<?> it3 = candidates.entrySet().iterator();
-//		System.out.println("Generate subsets of k-1=");
-		while (it3.hasNext()) {
-			Map.Entry pair = (Map.Entry) it3.next();
-			// System.out.println(pair.getKey() + " = " + pair.getValue());
-			int[] s = getSet(pair);
-			int k = s.length;
-			for (int i = 0; i < k; i++) {
-				int[] sub = new int[k - 1];
-				System.out.print("[");
-				for (int j = i + 1; j < k + i; j++) {
-					sub[j % (k - 1)] = s[j % k];
-					System.out.print(s[j % k] + ",");
-				}
-				System.out.print("]\n");
-				Arrays.sort(sub);
-				ItemSet item = new ItemSet(sub);
-				if(!lowerLevelItemSets.containsKey(item)){
-					candidates.remove(item);
-				}
-		
-			}
-			it3.remove();
-		}
-		
-		/*
-		 * TODO: now check the support for the candidates left after pruning and
-		 * add only those that have enough support (i.e. support >=
-		 * support_threshold) to the set
-		 */
-		Iterator it4 = subsets.entrySet().iterator();
-		while(it4.hasNext()){
-			System.out.println("it4");
-			Map.Entry<ItemSet, Integer> pair = (Map.Entry) it4.next();
-			int support = countSupport((int[])pair.getKey().getSet(), transactions);
-			if(support < supportThreshold){
-				subsets.remove(pair.getKey());
-				System.out.println("remove");
-			}
-			it4.remove();
-		}
-
-		return subsets;
+		return candidates;
 	}
 
 	private static int[] getSet(Map.Entry pair) {
@@ -152,7 +180,7 @@ public class Apriori {
 
 	private static Hashtable<ItemSet, Integer> generateFrequentItemSetsLevel1(
 			int[][] transactions) {
-		System.out.println("generateFrequentItemSetsLevel1");
+//		System.out.println("generateFrequentItemSetsLevel1");
 		Hashtable<ItemSet, Integer> sets = new Hashtable<>();
 		for (int i = 0; i < transactions.length; i++) {
 			for (int j = 0; j < transactions[i].length; j++) {
@@ -194,11 +222,7 @@ public class Apriori {
 			}
 			count += (barrier == 0) ? 1 : 0;
 		}
-		System.out.print("{ ");
-		for (int i = 0; i < itemSet.length; i++) {
-			System.out.print(itemSet[i]+" ");
-		}
-		System.out.println("} Count supoort: "+count);
+//		System.out.println(Arrays.toString(itemSet)+" Count supoort: "+count);
 		return count;
 	}
 

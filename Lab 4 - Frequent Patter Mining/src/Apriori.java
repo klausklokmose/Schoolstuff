@@ -10,10 +10,20 @@ public class Apriori {
 	/***
 	 * The TRANSACTIONS 2-dimensional array holds the full data set for the lab
 	 */
-	static final int[][] TRANSACTIONS = new int[][] { { 1, 2, 3, 4, 5 },
-			{ 1, 3, 5 }, { 2, 3, 5 }, { 1, 5 }, { 1, 3, 4 }, { 2, 3, 5 },
-			{ 2, 3, 5 }, { 3, 4, 5 }, { 4, 5 }, { 2 }, { 2, 3 }, { 2, 3, 4 },
-			{ 3, 4, 5 } };
+	static final int[][] TRANSACTIONS = new int[][] { 
+		{ 1, 2, 3, 4, 5 },
+		{ 1, 3, 5 }, 
+		{ 2, 3, 5 }, 
+		{ 1, 5 }, 
+		{ 1, 3, 4 }, 
+		{ 2, 3, 5 },
+		{ 2, 3, 5 }, 
+		{ 3, 4, 5 }, 
+		{ 4, 5 }, 
+		{ 2 }, 
+		{ 2, 3 }, 
+		{ 2, 3, 4 },
+		{ 3, 4, 5 } };
 	static final int supportThreshold = 4;
 	static final double min_conf = 70;
 
@@ -24,9 +34,9 @@ public class Apriori {
 		 System.out.println("Rule\t\tminSupport: "+supportThreshold+"\tminConfidence: "+min_conf);
 		 System.out.println("....................................................");
 		 for (int i = 0; i < associationrules.size(); i++) {
-			 if(associationrules.get(i).getConfidence() >= min_conf){
+//			 if(associationrules.get(i).getConfidence() >= min_conf){
 				 System.out.println(associationrules.get(i));
-			 }
+//			 }
 		}
 		 System.out.println("....................................................");
 	}
@@ -35,6 +45,7 @@ public class Apriori {
 	public static List<AssocaitionRule> apriori(int[][] transactions) {
 		Hashtable<ItemSet, Integer> result = new Hashtable<ItemSet, Integer>();
 		Hashtable<ItemSet, Integer> frequentItemSets = generateFrequentItemSetsLevel1(transactions);
+		
 		
 		while(frequentItemSets.size() > 0) {
 			frequentItemSets = generateFrequentItemSets(transactions,
